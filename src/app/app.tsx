@@ -1,8 +1,17 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Outlet } from 'react-router-dom';
 import styles from './app.module.scss';
+import { Navbar } from '../components/navbar/navbar';
 
 export function App() {
-    return <div>Hello world</div>;
+    return (
+        <div>
+            <Navbar />
+
+            <div className={styles.content}>
+                <Outlet />
+            </div>
+        </div>
+    );
 }
 
 export default App;
