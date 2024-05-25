@@ -1,0 +1,53 @@
+@import '../../_variables.scss';
+
+.loading-bar {
+    position: relative;
+    width: 100%;
+    height: $loading-bar-height;
+    background-color: $loading-bar-bg-color;
+    overflow: hidden;
+
+    &__progress {
+        position: absolute;
+        height: 100%;
+        background-color: $loading-bar-progress-color;
+
+        &--indeterminate1 {
+            animation: indeterminate1 $loading-bar-animation-duration infinite;
+        }
+
+        &--indeterminate2 {
+            animation: indeterminate2 $loading-bar-animation-duration infinite;
+        }
+    }
+}
+
+@keyframes indeterminate1 {
+    0% {
+        left: -35%;
+        width: 35%;
+    }
+    60% {
+        left: 100%;
+        width: 35%;
+    }
+    100% {
+        left: 100%;
+        width: 0;
+    }
+}
+
+@keyframes indeterminate2 {
+    0% {
+        left: -200%;
+        width: 100%;
+    }
+    60% {
+        left: 107%;
+        width: 10%;
+    }
+    100% {
+        left: 107%;
+        width: 0;
+    }
+}

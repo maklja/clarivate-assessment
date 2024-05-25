@@ -1,8 +1,8 @@
 import {
     BASE_URL,
-    createPaginationQueryParameters,
     DEFAULT_PAGINATION_LIMIT,
     DEFAULT_PAGINATION_PAGE,
+    createPaginationQueryParameters,
 } from './config';
 
 export interface Photo {

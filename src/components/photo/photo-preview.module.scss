@@ -1,0 +1,42 @@
+@import '../../_variables.scss';
+
+$image-tile-border-radius: 10px;
+$image-tile-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$image-tile-background-color: $secondary-color;
+$image-tile-title-bg-color: rgba(0, 0, 0, 0.7);
+$image-tile-title-color: $secondary-color;
+
+.image-tile {
+    width: 100%;
+    height: 100%;
+    border-radius: $image-tile-border-radius;
+    overflow: hidden;
+    box-shadow: $image-tile-box-shadow;
+    background-color: $image-tile-background-color;
+    display: flex;
+    flex-direction: column;
+    transition: transform 200ms ease-in-out;
+
+    &__img {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 2px;
+        height: 100%;
+        font-size: 14px;
+        background-color: $image-tile-title-bg-color;
+        color: $image-tile-title-color;
+        text-align: center;
+        text-overflow: ellipsis;
+    }
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.1, 1.1);
+    }
+}

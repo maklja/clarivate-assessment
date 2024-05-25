@@ -1,0 +1,16 @@
+@import '../../_variables.scss';
+
+.message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $message-gap;
+    background-color: $secondary-color;
+    font-size: $message-font-size;
+    padding: 20px;
+}
+
+.error-message {
+    color: $error-color;
+}

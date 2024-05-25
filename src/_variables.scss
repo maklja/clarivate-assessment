@@ -1,0 +1,28 @@
+$primary-color: #3498db !default;
+$secondary-color: #e0e0e0 !default;
+$error-color: red !default;
+$active-color: #f0fe4f !default;
+
+$button-bg-color: $primary-color;
+$button-hover-bg-color: #2980b9 !default;
+$button-active-bg-color: #1c5981 !default;
+$button-text-color: $secondary-color;
+$button-border-radius: 5px !default;
+$button-padding: 12px 24px !default;
+$button-font-size: 16px !default;
+$button-font-weight: bold !default;
+$button-transition-duration: 0.3s !default;
+$button-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !default;
+
+$loading-bar-height: 4px !default;
+$loading-bar-bg-color: $secondary-color;
+$loading-bar-progress-color: $primary-color !default;
+$loading-bar-animation-duration: 2s !default;
+
+$message-font-size: 20px !default;
+$message-gap: 10px !default;
+
+$navbar-bg-color: #333;
+$navbar-link-color: $secondary-color;
+$navbar-active-link-color: $active-color;
+$navbar-link-hover-bg-color: #555;

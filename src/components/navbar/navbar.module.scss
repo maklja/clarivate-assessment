@@ -1,35 +1,32 @@
-$navbar-bg-color: #333;
-$navbar-link-color: #fff;
-$navbar-active-link-color: #f0fe4f;
-$navbar-link-hover-bg-color: #555;
+@import '../../_variables.scss';
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: $navbar-bg-color;
-    padding: 1rem;
+    padding: 16px;
 
-    .navbar-brand {
+    &-brand {
         color: $navbar-link-color;
-        font-size: 1.5rem;
+        font-size: 24px;
         font-weight: bold;
     }
 
-    .navbar-menu {
+    &-menu {
         list-style: none;
         margin: 0;
         padding: 0;
         display: flex;
 
         .navbar-item {
-            margin-left: 1rem;
+            margin-left: 16px;
 
             .navbar-link {
                 color: $navbar-link-color;
                 text-decoration: none;
-                font-size: 1rem;
-                padding: 0.5rem 1rem;
+                font-size: 16px;
+                padding: 8px 16px;
                 transition: background-color 0.3s;
 
                 &:hover {
