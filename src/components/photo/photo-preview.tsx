@@ -39,6 +39,9 @@ export function PhotoPreview({
             </div>
 
             <div className={styles['image-tile__title']}>{photo.title}</div>
+            <div className={`${styles['image-tile__identifier']}`}>
+                {photo.id}
+            </div>
             {favoriteIconVisible ? (
                 <div className={`${styles['image-tile__favorite']}`}>
                     <span className={favIcon}></span>

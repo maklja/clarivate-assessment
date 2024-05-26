@@ -1,10 +1,9 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { DashboardPage } from './pages/dashboard/dashboard-page';
-import { ElementsListPage } from './pages/elements/elements-list-page';
-import { ErrorPage } from './pages/error/error-page';
 import App from './app/app';
+import { ErrorPage } from './pages/error/error-page';
+import { NotFoundPage } from './pages/error/not-found-page';
 
 const router = createBrowserRouter([
     {
@@ -14,11 +13,25 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/list',
-                element: <ElementsListPage />,
+                lazy: async () => {
+                    const { ElementsListPage } = await import(
+                        './pages/elements/elements-list-page'
+                    );
+                    return { Component: ElementsListPage };
+                },
             },
             {
                 path: '',
-                element: <DashboardPage />,
+                lazy: async () => {
+                    const { DashboardPage } = await import(
+                        './pages/dashboard/dashboard-page'
+                    );
+                    return { Component: DashboardPage };
+                },
+            },
+            {
+                path: '*',
+                element: <NotFoundPage />,
             },
         ],
     },

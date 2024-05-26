@@ -45,9 +45,16 @@ $image-tile-title-color: $secondary-color;
         transform: scale(1.1, 1.1);
     }
 
+    &__identifier {
+        font-size: $image-tile-badge-icon-font-size;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
     &__favorite {
         color: $image-tile-favorite-icon-color;
-        font-size: $image-tile-favorite-icon-font-size;
+        font-size: $image-tile-badge-icon-font-size;
         position: absolute;
         top: 10px;
         right: 10px;
