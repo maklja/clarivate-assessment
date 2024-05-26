@@ -1,0 +1,33 @@
+@import '../../_variables.scss';
+
+.select-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    background-color: $secondary-color;
+}
+
+.select-error-message {
+    color: $error-color;
+    text-align: center;
+    font-size: 14px;
+}
+
+.select-item {
+    padding: 5px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid $secondary-color;
+    background: $select-item-bg-color;
+    color: $select-item-text-color;
+
+    &:not(&--active):hover {
+        background: $select-item-hover-bg-color;
+    }
+
+    &--active {
+        background: $select-item-active-bg-color;
+        color: $select-item-active-text-color;
+    }
+}

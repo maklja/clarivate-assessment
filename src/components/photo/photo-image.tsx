@@ -30,6 +30,7 @@ export function PhotoImg({ src, alt, fallbackSrc }: ImageProps) {
                 alt={alt}
                 onLoad={handleImageLoad}
                 onError={handleImageLoadError}
+                loading="lazy"
             />
             {loading ? (
                 <div className={styles['image-photo__loading']}></div>

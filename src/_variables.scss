@@ -3,7 +3,7 @@ $secondary-color: #e0e0e0 !default;
 $error-color: red !default;
 $active-color: #f0fe4f !default;
 
-$button-bg-color: $primary-color;
+$button-bg-color: $primary-color !default;
 $button-hover-bg-color: #2980b9 !default;
 $button-active-bg-color: #1c5981 !default;
 $button-text-color: $secondary-color;
@@ -22,7 +22,20 @@ $loading-bar-animation-duration: 2s !default;
 $message-font-size: 20px !default;
 $message-gap: 10px !default;
 
-$navbar-bg-color: #333;
-$navbar-link-color: $secondary-color;
-$navbar-active-link-color: $active-color;
-$navbar-link-hover-bg-color: #555;
+$navbar-bg-color: #333 !default;
+$navbar-link-color: $secondary-color !default;
+$navbar-active-link-color: $active-color !default;
+$navbar-link-hover-bg-color: #555 !default;
+
+$fab-size: 56px !default;
+$fab-font-size: 24px !default;
+
+$select-item-bg-color: #fff !default;
+$select-item-hover-bg-color: rgba(0, 116, 217, 0.1) !default;
+$select-item-text-color: black !default;
+$select-item-active-bg-color: #0074d9 !default;
+$select-item-active-text-color: #fff !default;
+
+$elements-list-column-num: 6 !default;
+$elements-list-grid-size: 200px !default;
+$elements-list-grid-gap: 20px !default;

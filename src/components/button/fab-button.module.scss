@@ -1,0 +1,32 @@
+@import '../../_variables.scss';
+
+.fab {
+    background-color: $button-bg-color;
+    color: $button-text-color;
+    border: none;
+    border-radius: 50%;
+    width: $fab-size;
+    height: $fab-size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $fab-font-size;
+    cursor: pointer;
+    box-shadow: $button-box-shadow;
+    transition: background-color $button-transition-duration,
+        box-shadow $button-transition-duration;
+
+    &:hover {
+        background-color: $button-hover-bg-color;
+    }
+
+    &:active {
+        background-color: $button-active-bg-color;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.4);
+    }
+}

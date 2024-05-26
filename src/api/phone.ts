@@ -14,10 +14,14 @@ export interface Photo {
 }
 
 export async function fetchPhotos(
-    albumId: number,
+    albumId: number | null,
     page = DEFAULT_PAGINATION_PAGE,
     limit = DEFAULT_PAGINATION_LIMIT
 ): Promise<Photo[]> {
+    if (!albumId) {
+        return [];
+    }
+
     const response = await fetch(
         `${BASE_URL}/albums/${albumId}/photos?${createPaginationQueryParameters(
             page,
