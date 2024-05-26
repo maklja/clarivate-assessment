@@ -16,6 +16,11 @@ $image-tile-title-color: $secondary-color;
     display: flex;
     flex-direction: column;
     transition: transform 200ms ease-in-out;
+    position: relative;
+
+    &.image-tile-favorite {
+        border: 2px solid $image-tile-favorite-icon-color;
+    }
 
     &__img {
         width: 100%;
@@ -38,5 +43,20 @@ $image-tile-title-color: $secondary-color;
     &:hover {
         cursor: pointer;
         transform: scale(1.1, 1.1);
+    }
+
+    &__favorite {
+        color: $image-tile-favorite-icon-color;
+        font-size: $image-tile-favorite-icon-font-size;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: $image-tile-favorite-icon-bg-color;
+        border-radius: 50%;
+        width: $image-tile-favorite-icon-bg-size;
+        height: $image-tile-favorite-icon-bg-size;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import styles from './elements-list-page.module.scss';
-import noImageSrc from '../assets/no-image.gif';
-import { Message, MessageType } from '../components/message/message';
-import { Button } from '../components/button/button';
-import { LoadingBar } from '../components/loading-bar/loading-bar';
-import { PhotoPreview } from '../components/photo/photo-preview';
-import { FabButton } from '../components/button/fab-button';
-import { AlbumsSelect } from '../components/select/albums-select';
-import { usePhotos } from '../hooks/photo/usePhotos';
-import { Photo } from '../api/phone';
-import { Album } from '../api/album';
+import { Message, MessageType } from '../../components/message/message';
+import { Button } from '../../components/button/button';
+import { LoadingBar } from '../../components/loading-bar/loading-bar';
+import { FabButton } from '../../components/button/fab-button';
+import { AlbumsSelect } from '../../components/select/albums-select';
+import { usePhotos } from '../../hooks/photo/usePhotos';
+import { Photo } from '../../api/phone';
+import { Album } from '../../api/album';
+import {
+    addFavoritePhoto,
+    removeFavoritePhoto,
+    useFavoritePhotos,
+} from '../../store/root-store';
+import { PhotosList } from '../../components/photo/photos-list';
 
 export interface ElementsListPageProps {
     fabVisibilityThreshold?: number;
@@ -24,6 +28,7 @@ export function ElementsListPage({
     const { ref, inView } = useInView();
     const { isFetching, isLoading, isError, data, fetchNextPage, hasNextPage } =
         usePhotos(albumId);
+    const favoritePhotos = useFavoritePhotos();
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetching) {
@@ -40,8 +45,15 @@ export function ElementsListPage({
         return () => window.removeEventListener('scroll', scrollHandler);
     }, [fabVisibilityThreshold]);
 
-    function handleTileClick(photo: Photo) {
-        alert(photo.id);
+    function handleImageTileClick(photo: Photo) {
+        const isFavorite = favoritePhotos.some(
+            (currentPhoto) => currentPhoto.id === photo.id
+        );
+        if (isFavorite) {
+            removeFavoritePhoto(photo.id);
+        } else {
+            addFavoritePhoto(photo);
+        }
     }
 
     function handleAlbumChange(album: Album) {
@@ -60,37 +72,24 @@ export function ElementsListPage({
     const hasData = Boolean(photos.length) || isLoading || isError;
     return (
         <>
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    margin: '10px 0px 15px',
-                }}
-            >
-                <div style={{ width: '400px' }}>
+            <div className={styles['albums-select-container']}>
+                <div className={styles['albums-select']}>
                     <AlbumsSelect onChange={handleAlbumChange} />
                 </div>
             </div>
 
             <div className={styles['elements-page']}>
-                {photos.length > 0 ? (
-                    <div className={styles['elements-grid']}>
-                        {photos.map((photo) => (
-                            <PhotoPreview
-                                key={photo.id}
-                                photo={photo}
-                                fallbackImageSrc={noImageSrc}
-                                onClick={handleTileClick}
-                            />
-                        ))}
-
-                        <div
-                            ref={ref}
-                            className={styles['elements-grid-shadow']}
-                        ></div>
-                    </div>
-                ) : null}
+                <PhotosList
+                    photos={photos}
+                    favoritePhotos={favoritePhotos}
+                    favoriteIconVisible
+                    onPhotoTileClick={handleImageTileClick}
+                >
+                    <div
+                        ref={ref}
+                        className={styles['elements-grid-shadow']}
+                    ></div>
+                </PhotosList>
 
                 {!hasData ? <Message text="No photos."></Message> : null}
                 {isError ? (

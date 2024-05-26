@@ -1,0 +1,28 @@
+@import '../../_variables.scss';
+
+.albums-select-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px 15px;
+
+    .albums-select {
+        width: 400px;
+    }
+}
+
+.elements-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.elements-loader {
+    margin: 10px 0px;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+}
