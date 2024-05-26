@@ -38,10 +38,23 @@
                     background-color: $navbar-link-hover-bg-color;
                     border-radius: 5px;
                 }
+
+                &--active {
+                    color: $navbar-active-link-color;
+                }
             }
 
-            .navbar-link.active {
-                color: $navbar-active-link-color;
+            .navbar-lang {
+                color: $navbar-link-color;
+                cursor: pointer;
+
+                &--active {
+                    color: $navbar-active-link-color;
+                }
+
+                &:last-child {
+                    margin-right: 20px;
+                }
             }
         }
     }

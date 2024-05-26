@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useState, SyntheticEvent } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Select from 'react-dropdown-select';
+import { useTranslation } from 'react-i18next';
 import styles from './select.module.scss';
 import { useAlbums } from '../../hooks/album/useAlbums';
 import { Album } from '../../api/album';
@@ -39,6 +40,7 @@ export interface AlbumsSelectProps {
 }
 
 export function AlbumsSelect({ selectedAlbumId, onChange }: AlbumsSelectProps) {
+    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const { ref, inView } = useInView({
         skip: !open,
@@ -95,13 +97,13 @@ export function AlbumsSelect({ selectedAlbumId, onChange }: AlbumsSelectProps) {
                             onClick={handleAlbumClick}
                         />
                     )}
-                    placeholder="Select album"
+                    placeholder={t('clarivate.album.select')}
                     loading={isFetching}
                 />
             </div>
             {isError ? (
                 <div className={styles['select-error-message']}>
-                    Failed to load albums. Please try again later.
+                    {t('clarivate.album.error')}
                 </div>
             ) : null}
         </>

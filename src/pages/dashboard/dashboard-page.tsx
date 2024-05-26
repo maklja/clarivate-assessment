@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FabButton } from '../../components/button/fab-button';
 import { Message } from '../../components/message/message';
 import { PhotosList } from '../../components/photo/photos-list';
@@ -15,6 +16,7 @@ export interface DashboardPageProps {
 }
 
 export function DashboardPage({ fabVisibilityThreshold }: DashboardPageProps) {
+    const { t } = useTranslation();
     const favoritePhotos = useFavoritePhotos();
     const scrollToTopVisible = useScrollThreshold(
         fabVisibilityThreshold,
@@ -26,7 +28,6 @@ export function DashboardPage({ fabVisibilityThreshold }: DashboardPageProps) {
         window.scrollTo(0, dashboardScrollPosition);
     }, [dashboardScrollPosition]);
 
-
     function handleScrollToTop() {
         window.scrollTo(0, 0);
     }
@@ -36,14 +37,16 @@ export function DashboardPage({ fabVisibilityThreshold }: DashboardPageProps) {
             <PhotosList photos={favoritePhotos} />
 
             {favoritePhotos.length === 0 ? (
-                <Message text="No favorites photos."></Message>
+                <Message
+                    text={t('clarivate.dashboard.no-favorite-photos')}
+                ></Message>
             ) : null}
 
             {scrollToTopVisible ? (
                 <div className={styles['scroll-to-top']}>
                     <FabButton
                         text="↑"
-                        title="Scroll to the top"
+                        title={t('clarivate.pages.scroll-to-top')}
                         onClick={handleScrollToTop}
                     />
                 </div>

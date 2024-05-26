@@ -7,6 +7,7 @@ import { LoadingBar } from '../../components/loading-bar/loading-bar';
 import { FabButton } from '../../components/button/fab-button';
 import { AlbumsSelect } from '../../components/select/albums-select';
 import { usePhotos } from '../../hooks/photo/usePhotos';
+import { useTranslation } from 'react-i18next';
 import { Photo } from '../../api/phone';
 import { Album } from '../../api/album';
 import {
@@ -28,6 +29,7 @@ export interface ElementsListPageProps {
 export function ElementsListPage({
     fabVisibilityThreshold,
 }: ElementsListPageProps) {
+    const { t } = useTranslation();
     const { ref, inView } = useInView();
     const scrollToTopVisible = useScrollThreshold(
         fabVisibilityThreshold,
@@ -98,13 +100,20 @@ export function ElementsListPage({
                     ></div>
                 </PhotosList>
 
-                {!hasData ? <Message text="No photos."></Message> : null}
+                {!hasData ? (
+                    <Message
+                        text={t('clarivate.elements-list.no-photos')}
+                    ></Message>
+                ) : null}
                 {isError ? (
                     <Message
-                        text="Failed to load data. Please try again later."
+                        text={t('clarivate.elements-list.error')}
                         type={MessageType.Error}
                     >
-                        <Button text="Refresh" onClick={handleRefresh} />
+                        <Button
+                            text={t('clarivate.elements-list.button-refresh')}
+                            onClick={handleRefresh}
+                        />
                     </Message>
                 ) : null}
                 <div className={styles['elements-loader']}>
@@ -115,7 +124,7 @@ export function ElementsListPage({
                 <div className={styles['scroll-to-top']}>
                     <FabButton
                         text="↑"
-                        title="Scroll to the top"
+                        title={t('clarivate.pages.scroll-to-top')}
                         onClick={handleScrollToTop}
                     />
                 </div>
