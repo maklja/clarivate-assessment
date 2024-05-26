@@ -1,11 +1,16 @@
 @import '../../_variables.scss';
 
 .navbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 99%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: $navbar-bg-color;
     padding: 16px;
+    z-index: 10;
 
     &-brand {
         color: $navbar-link-color;

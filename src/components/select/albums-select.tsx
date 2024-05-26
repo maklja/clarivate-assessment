@@ -35,16 +35,20 @@ const SelectItem = forwardRef<HTMLDivElement | null, SelectItemProps>(
 
 export interface AlbumsSelectProps {
     onChange?: (album: Album) => void;
+    selectedAlbumId: number | null;
 }
 
-export function AlbumsSelect({ onChange }: AlbumsSelectProps) {
+export function AlbumsSelect({ selectedAlbumId, onChange }: AlbumsSelectProps) {
     const [open, setOpen] = useState(false);
     const { ref, inView } = useInView({
         skip: !open,
     });
     const { isFetching, data, isError, hasNextPage, fetchNextPage } =
         useAlbums();
-    const [selected, setSelected] = useState<Album[]>([]);
+    const albums = data?.pages.flat() ?? [];
+    const [selected, setSelected] = useState<Album[]>(
+        albums.filter((album) => album.id === selectedAlbumId)
+    );
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetching) {
@@ -52,7 +56,6 @@ export function AlbumsSelect({ onChange }: AlbumsSelectProps) {
         }
     }, [inView, isFetching, fetchNextPage, hasNextPage, data?.pageParams]);
 
-    const albums = data?.pages.flat() ?? [];
     function handleAlbumClick(albumId: number) {
         const album = albums.find((album) => album.id === albumId);
         if (!album) {

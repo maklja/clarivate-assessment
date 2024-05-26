@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import styles from './elements-list-page.module.scss';
 import { Message, MessageType } from '../../components/message/message';
@@ -12,38 +12,42 @@ import { Album } from '../../api/album';
 import {
     addFavoritePhoto,
     removeFavoritePhoto,
+    selectAlbum,
+    setPhotoListScrollPosition,
     useFavoritePhotos,
+    usePageScrollPosition,
+    useSelectedAlbum,
 } from '../../store/root-store';
 import { PhotosList } from '../../components/photo/photos-list';
+import { useScrollThreshold } from '../../hooks/utils/useScrollThreshold';
 
 export interface ElementsListPageProps {
     fabVisibilityThreshold?: number;
 }
 
 export function ElementsListPage({
-    fabVisibilityThreshold = 100,
+    fabVisibilityThreshold,
 }: ElementsListPageProps) {
-    const [scrollToTopVisible, setScrollToTopVisible] = useState(false);
-    const [albumId, setAlbumId] = useState<number | null>(null);
     const { ref, inView } = useInView();
+    const scrollToTopVisible = useScrollThreshold(
+        fabVisibilityThreshold,
+        setPhotoListScrollPosition
+    );
+    const { photoListScrollPosition } = usePageScrollPosition();
+    const albumId = useSelectedAlbum();
     const { isFetching, isLoading, isError, data, fetchNextPage, hasNextPage } =
         usePhotos(albumId);
     const favoritePhotos = useFavoritePhotos();
+
+    useEffect(() => {
+        window.scrollTo(0, photoListScrollPosition);
+    }, [photoListScrollPosition]);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetching) {
             fetchNextPage();
         }
     }, [inView, isFetching, fetchNextPage, hasNextPage, data?.pageParams]);
-
-    useEffect(() => {
-        const scrollHandler = () => {
-            setScrollToTopVisible(window.scrollY > fabVisibilityThreshold);
-        };
-        window.addEventListener('scroll', scrollHandler);
-
-        return () => window.removeEventListener('scroll', scrollHandler);
-    }, [fabVisibilityThreshold]);
 
     function handleImageTileClick(photo: Photo) {
         const isFavorite = favoritePhotos.some(
@@ -57,7 +61,7 @@ export function ElementsListPage({
     }
 
     function handleAlbumChange(album: Album) {
-        setAlbumId(album.id);
+        selectAlbum(album.id);
     }
 
     function handleRefresh() {
@@ -74,7 +78,10 @@ export function ElementsListPage({
         <>
             <div className={styles['albums-select-container']}>
                 <div className={styles['albums-select']}>
-                    <AlbumsSelect onChange={handleAlbumChange} />
+                    <AlbumsSelect
+                        selectedAlbumId={albumId}
+                        onChange={handleAlbumChange}
+                    />
                 </div>
             </div>
 
