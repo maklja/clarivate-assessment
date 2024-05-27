@@ -20,7 +20,6 @@
         "react-router-dom": "^6.23.1"
     },
     "devDependencies": {
-        "@nx/cypress": "19.1.0",
         "@nx/devkit": "19.1.0",
         "@nx/eslint": "19.1.0",
         "@nx/eslint-plugin": "19.1.0",
