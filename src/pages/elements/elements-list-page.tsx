@@ -31,6 +31,7 @@ export function ElementsListPage({
 }: ElementsListPageProps) {
     const { t } = useTranslation();
     const { ref, inView } = useInView();
+    const favoritePhotos = useFavoritePhotos();
     const scrollToTopVisible = useScrollThreshold(
         fabVisibilityThreshold,
         setPhotoListScrollPosition
@@ -39,7 +40,6 @@ export function ElementsListPage({
     const albumId = useSelectedAlbum();
     const { isFetching, isLoading, isError, data, fetchNextPage, hasNextPage } =
         usePhotos(albumId);
-    const favoritePhotos = useFavoritePhotos();
 
     useEffect(() => {
         window.scrollTo(0, photoListScrollPosition);
