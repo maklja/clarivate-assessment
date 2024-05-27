@@ -12,7 +12,11 @@
             "files": ["*.js", "*.jsx"],
             "extends": ["plugin:@nx/javascript"],
             "rules": {}
+        },
+        {
+            "files": ["e2e/**/*.{ts,js,tsx,jsx}"],
+            "rules": {}
         }
     ],
-    "extends": ["plugin:@nx/react"]
+    "extends": ["plugin:playwright/recommended", "plugin:@nx/react"]
 }

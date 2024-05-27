@@ -80,6 +80,9 @@ export function AlbumsSelect({ selectedAlbumId, onChange }: AlbumsSelectProps) {
         <>
             <div className={styles['select-container']}>
                 <Select
+                    additionalProps={{
+                        id: 'albums-select',
+                    }}
                     searchable={false}
                     options={albums}
                     labelField="title"
@@ -88,13 +91,16 @@ export function AlbumsSelect({ selectedAlbumId, onChange }: AlbumsSelectProps) {
                     values={selected}
                     onDropdownOpen={() => setOpen(true)}
                     onDropdownClose={() => setOpen(false)}
-                    itemRenderer={({ item, itemIndex = 0, state }) => (
+                    itemRenderer={({ item, itemIndex = 0, state, methods }) => (
                         <SelectItem
                             ref={itemIndex === albums.length - 1 ? ref : null}
                             id={item.id}
                             text={item.title}
                             selected={state.values.includes(item)}
-                            onClick={handleAlbumClick}
+                            onClick={(albumId) => {
+                                handleAlbumClick(albumId);
+                                methods.dropDown('close');
+                            }}
                         />
                     )}
                     placeholder={t('clarivate.album.select')}
