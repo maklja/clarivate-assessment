@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 
+import '../../translations/i18n';
 import { Navbar } from './navbar';
 
 const meta: Meta<typeof Navbar> = {

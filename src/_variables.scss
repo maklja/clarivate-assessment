@@ -36,7 +36,10 @@ $select-item-text-color: black !default;
 $select-item-active-bg-color: #0074d9 !default;
 $select-item-active-text-color: #fff !default;
 
-$elements-list-column-num: 6 !default;
+$elements-list-xlarge-column-num: 6 !default;
+$elements-list-large-column-num: 5 !default;
+$elements-list-medium-column-num: 4 !default;
+$elements-list-small-column-num: 2 !default;
 $elements-list-grid-size: 200px !default;
 $elements-list-grid-gap: 20px !default;
 
@@ -44,3 +47,33 @@ $image-tile-favorite-icon-color: #ff0000 !default;
 $image-tile-badge-icon-font-size: 26px !default;
 $image-tile-favorite-icon-bg-color: rgba(0, 0, 0, 0.4) !default;
 $image-tile-favorite-icon-bg-size: 40px !default;
+
+$breakpoint-small: 576px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 992px;
+$breakpoint-xlarge: 1200px;
+$breakpoint-xxlarge: 1400px;
+
+@mixin screen-size($breakpoint) {
+    @if $breakpoint == small {
+        @media (min-width: $breakpoint-small) {
+            @content;
+        }
+    } @else if $breakpoint == medium {
+        @media (min-width: $breakpoint-medium) {
+            @content;
+        }
+    } @else if $breakpoint == large {
+        @media (min-width: $breakpoint-large) {
+            @content;
+        }
+    } @else if $breakpoint == xlarge {
+        @media (min-width: $breakpoint-xlarge) {
+            @content;
+        }
+    } @else if $breakpoint == xxlarge {
+        @media (min-width: $breakpoint-xxlarge) {
+            @content;
+        }
+    }
+}

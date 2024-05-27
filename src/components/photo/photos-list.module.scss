@@ -3,10 +3,31 @@
 .elements-grid {
     display: grid;
     grid-template-columns: repeat(
-        $elements-list-column-num,
+        $elements-list-small-column-num,
         $elements-list-grid-size
     );
     gap: $elements-list-grid-gap $elements-list-grid-gap;
+
+    @include screen_size(medium) {
+        grid-template-columns: repeat(
+            $elements-list-medium-column-num,
+            $elements-list-grid-size
+        );
+    }
+
+    @include screen_size(large) {
+        grid-template-columns: repeat(
+            $elements-list-large-column-num,
+            $elements-list-grid-size
+        );
+    }
+
+    @include screen_size(xlarge) {
+        grid-template-columns: repeat(
+            $elements-list-xlarge-column-num,
+            $elements-list-grid-size
+        );
+    }
 
     &-shadow {
         width: $elements-list-grid-size;
