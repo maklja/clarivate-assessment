@@ -24,6 +24,7 @@ export function PhotoPreview({
     const favIcon = favorite ? 'icon-heart' : 'icon-heart-empty';
     return (
         <div
+            data-testid={`photo-tile-${photo.id}`}
             className={`${styles['image-tile']} ${
                 favorite ? styles['image-tile-favorite'] : ''
             }`}
@@ -43,7 +44,10 @@ export function PhotoPreview({
                 {photo.id}
             </div>
             {favoriteIconVisible ? (
-                <div className={`${styles['image-tile__favorite']}`}>
+                <div
+                    data-testid={`photo-tile-${photo.id}_fav-icon`}
+                    className={`${styles['image-tile__favorite']}`}
+                >
                     <span className={favIcon}></span>
                 </div>
             ) : null}

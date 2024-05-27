@@ -2,14 +2,16 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './navbar.module.scss';
 
-export interface NavbarLinkProps {
+interface NavbarLinkProps {
+    id: string;
     name: string;
     to: string;
 }
 
-function NavbarLink({ name, to }: NavbarLinkProps) {
+function NavbarLink({ id, name, to }: NavbarLinkProps) {
     return (
         <NavLink
+            data-testid={`nav-link-${id}`}
             to={to}
             className={({ isActive }) =>
                 isActive
@@ -34,10 +36,15 @@ export function Navbar() {
             <div className={styles['navbar-brand']}>{t('clarivate.brand')}</div>
             <ul className={styles['navbar-menu']}>
                 <li className={styles['navbar-item']}>
-                    <NavbarLink to="/" name={t('clarivate.links.dashboard')} />
+                    <NavbarLink
+                        id="dashboard"
+                        to="/"
+                        name={t('clarivate.links.dashboard')}
+                    />
                 </li>
                 <li className={styles['navbar-item']}>
                     <NavbarLink
+                        id="list"
                         to="/list"
                         name={t('clarivate.links.elements-list')}
                     />

@@ -23,6 +23,7 @@ export function PhotoImg({ src, alt, fallbackSrc }: ImageProps) {
     return (
         <div className={styles['image-photo']}>
             <img
+                data-testid="photo-image-content"
                 className={`${styles['image-photo__img']} ${
                     loading ? '' : styles['image-photo__img--loaded']
                 }`}

@@ -18,6 +18,7 @@ export function Message({
 }: PropsWithChildren<MessageProps>) {
     return (
         <div
+            data-testid="message"
             className={`${styles['message']} ${
                 type === MessageType.Error ? styles['error-message'] : ''
             }`}

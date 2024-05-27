@@ -8,7 +8,12 @@ export interface FabButtonProps {
 
 export function FabButton({ text, title, onClick }: FabButtonProps) {
     return (
-        <button title={title} className={styles.fab} onClick={onClick}>
+        <button
+            data-testid="fab-button"
+            title={title}
+            className={styles.fab}
+            onClick={onClick}
+        >
             {text}
         </button>
     );

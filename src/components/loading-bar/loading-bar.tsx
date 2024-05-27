@@ -16,7 +16,7 @@ export function LoadingBar({ showDelay = 500 }: LoadingBarProps) {
     }, [showDelay]);
 
     return visible ? (
-        <div className={styles['loading-bar']}>
+        <div data-testid="loading-bar" className={styles['loading-bar']}>
             <div
                 className={`${styles['loading-bar__progress']} ${styles['loading-bar__progress--indeterminate1']}
             `}
