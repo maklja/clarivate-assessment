@@ -9,7 +9,7 @@ For this assignment, I opted to develop most components from scratch. In a real 
 
 ## Demo
 
-[Live Demo](https://example.com)
+[Live Demo](https://maklja.github.io/clarivate-assessment/)
 
 ## Installation
 
@@ -106,3 +106,7 @@ To enable multi-language support, the [react-i18next](https://react.i18next.com/
 ## Responsive design
 
 Minimal adjustments have been made to support responsive design, evident in the styles.scss file. For enterprise-level projects, employing frameworks like Tailwind or React Material UI is recommended for crafting a user-friendly, responsive UI.
+
+## Assets
+
+Icons are downloaded from the Fontello site, and a couple of free images are used within the application for an enhanced appearance."

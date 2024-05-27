@@ -46,7 +46,8 @@ export function ElementsListPage({
 
     useEffect(() => {
         window.scrollTo(0, photoListScrollPosition);
-    }, [photoListScrollPosition]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetching) {
@@ -78,7 +79,7 @@ export function ElementsListPage({
     }
 
     const photos = data?.pages.flat() ?? [];
-    const hasData = Boolean(photos.length) || isLoading || isError;
+    const hasData = photos.length > 0 || isLoading || isError;
     return (
         <>
             <div className={styles['albums-select-container']}>
@@ -106,7 +107,7 @@ export function ElementsListPage({
                 {!hasData ? (
                     <MessageTile
                         text={t('clarivate.elements-list.no-photos')}
-                    ></MessageTile>
+                    />
                 ) : null}
                 {isError ? (
                     <MessageTile

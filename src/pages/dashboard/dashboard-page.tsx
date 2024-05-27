@@ -26,7 +26,8 @@ export function DashboardPage({ fabVisibilityThreshold }: DashboardPageProps) {
 
     useEffect(() => {
         window.scrollTo(0, dashboardScrollPosition);
-    }, [dashboardScrollPosition]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     function handleScrollToTop() {
         window.scrollTo(0, 0);
