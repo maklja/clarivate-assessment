@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import styles from './elements-list-page.module.scss';
-import { Message, MessageType } from '../../components/message/message';
+import {
+    MessageTile,
+    MessageType,
+} from '../../components/message/message-tile';
 import { Button } from '../../components/button/button';
 import { LoadingBar } from '../../components/loading-bar/loading-bar';
 import { FabButton } from '../../components/button/fab-button';
@@ -101,12 +104,12 @@ export function ElementsListPage({
                 </PhotosList>
 
                 {!hasData ? (
-                    <Message
+                    <MessageTile
                         text={t('clarivate.elements-list.no-photos')}
-                    ></Message>
+                    ></MessageTile>
                 ) : null}
                 {isError ? (
-                    <Message
+                    <MessageTile
                         text={t('clarivate.elements-list.error')}
                         type={MessageType.Error}
                     >
@@ -114,7 +117,7 @@ export function ElementsListPage({
                             text={t('clarivate.elements-list.button-refresh')}
                             onClick={handleRefresh}
                         />
-                    </Message>
+                    </MessageTile>
                 ) : null}
                 <div className={styles['elements-loader']}>
                     {isFetching ? <LoadingBar /> : null}
@@ -123,7 +126,7 @@ export function ElementsListPage({
             {scrollToTopVisible ? (
                 <div className={styles['scroll-to-top']}>
                     <FabButton
-                        text="↑"
+                        iconClass="icon-up"
                         title={t('clarivate.pages.scroll-to-top')}
                         onClick={handleScrollToTop}
                     />

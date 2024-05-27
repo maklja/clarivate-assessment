@@ -1,21 +1,21 @@
 import { PropsWithChildren } from 'react';
-import styles from './message.module.scss';
+import styles from './message-tile.module.scss';
 
 export enum MessageType {
     Default = 'default',
     Error = 'error',
 }
 
-export interface MessageProps {
+export interface MessageTileProps {
     text: string;
     type?: MessageType;
 }
 
-export function Message({
+export function MessageTile({
     text,
     type = MessageType.Default,
     children,
-}: PropsWithChildren<MessageProps>) {
+}: PropsWithChildren<MessageTileProps>) {
     return (
         <div
             data-testid="message"

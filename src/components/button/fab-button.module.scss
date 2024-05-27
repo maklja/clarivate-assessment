@@ -15,6 +15,7 @@
     box-shadow: $button-box-shadow;
     transition: background-color $button-transition-duration,
         box-shadow $button-transition-duration;
+    padding-bottom: 8px;
 
     &:hover {
         background-color: $button-hover-bg-color;

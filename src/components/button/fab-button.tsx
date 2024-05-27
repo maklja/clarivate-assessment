@@ -1,12 +1,13 @@
 import styles from './fab-button.module.scss';
 
 export interface FabButtonProps {
-    text: string;
+    text?: string;
+    iconClass?: string;
     title?: string;
     onClick?: () => void;
 }
 
-export function FabButton({ text, title, onClick }: FabButtonProps) {
+export function FabButton({ text, title, iconClass, onClick }: FabButtonProps) {
     return (
         <button
             data-testid="fab-button"
@@ -14,7 +15,7 @@ export function FabButton({ text, title, onClick }: FabButtonProps) {
             className={styles.fab}
             onClick={onClick}
         >
-            {text}
+            <span className={iconClass}>{text}</span>
         </button>
     );
 }
