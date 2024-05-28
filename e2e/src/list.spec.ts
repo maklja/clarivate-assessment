@@ -16,11 +16,15 @@ test('list should load more images on scroll to bottom', async ({ page }) => {
     await page.goto('/list');
 
     // click on the select
+    await page.waitForSelector('#albums-select');
     await expect(page.locator('#albums-select')).toBeVisible();
     await page.locator('#albums-select').click();
 
     // check if select dropdown is open
-    await expect(page.locator('[role="list"]')).toBeVisible();
+    await page.waitForSelector('[role="list"]');
+    await expect(
+        page.locator('[role="list"]').locator(':first-child')
+    ).toBeVisible();
 
     // select first album from the list
     await page.locator('[role="list"]').locator(':first-child').click();
@@ -31,4 +35,5 @@ test('list should load more images on scroll to bottom', async ({ page }) => {
 
     // wait last photo image to load
     await page.waitForSelector('[data-testid="photo-tile-50"]');
+    await expect(page.locator('[data-testid="photo-tile-50"]')).toBeVisible();
 });
